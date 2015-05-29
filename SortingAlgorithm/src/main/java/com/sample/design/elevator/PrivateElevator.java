@@ -1,8 +1,6 @@
-package com.sample.design.elevator.solution2;
+package com.sample.design.elevator;
 
 import java.util.PriorityQueue;
-
-import com.sample.design.elevator.solution2.states.ElevatorState;
 
 public class PrivateElevator extends Elevator {
 

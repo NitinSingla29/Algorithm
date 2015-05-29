@@ -1,11 +1,6 @@
-package com.sample.design.elevator.solution2;
+package com.sample.design.elevator;
 
 import java.util.PriorityQueue;
-
-import com.sample.design.elevator.solution2.states.BeepOnState;
-import com.sample.design.elevator.solution2.states.ElevatorState;
-import com.sample.design.elevator.solution2.states.IState;
-import com.sample.design.elevator.solution2.states.MovingUpState;
 
 public abstract class Elevator implements StateFulObject<ElevatorState> {
 	ElevatorState currentElevatorState;

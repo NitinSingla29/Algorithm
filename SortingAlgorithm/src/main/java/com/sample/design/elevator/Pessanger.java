@@ -1,4 +1,4 @@
-package com.sample.design.elevator.solution2;
+package com.sample.design.elevator;
 
 /**
  * Class which stores the information about a pessanger.

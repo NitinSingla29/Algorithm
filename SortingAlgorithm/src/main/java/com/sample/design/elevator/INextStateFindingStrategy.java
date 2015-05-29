@@ -1,6 +1,5 @@
-package com.sample.design.elevator.solution2;
+package com.sample.design.elevator;
 
-import com.sample.design.elevator.solution2.states.IState;
 
 public interface INextStateFindingStrategy<IS extends IState, SFO extends StateFulObject<IS>> {
 

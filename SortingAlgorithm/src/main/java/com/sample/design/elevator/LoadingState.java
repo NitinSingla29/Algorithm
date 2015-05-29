@@ -1,6 +1,5 @@
-package com.sample.design.elevator.solution2.states;
+package com.sample.design.elevator;
 
-import com.sample.design.elevator.solution2.Elevator;
 
 public class LoadingState extends ElevatorState {
 
