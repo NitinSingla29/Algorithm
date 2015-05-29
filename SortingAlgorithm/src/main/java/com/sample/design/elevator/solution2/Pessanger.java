@@ -4,7 +4,7 @@ package com.sample.design.elevator.solution2;
  * Class which stores the information about a pessanger.
  */
 
-public class Pessanger implements Comparable<Pessanger> {
+public class Pessanger implements Comparable<Pessanger>{
 	// class-wide variable
 	private static int lastUsedPersonID = 0; // last id assigned
 
@@ -32,11 +32,6 @@ public class Pessanger implements Comparable<Pessanger> {
 		timeEntered = enteringTime;
 		timeLeft = -1;
 		// end constructor
-	}
-
-	@Override
-	public int compareTo(Pessanger o) {
-		return o.targetFloor - targetFloor;
 	}
 
 	/** get the time entered for this person */
@@ -74,5 +69,10 @@ public class Pessanger implements Comparable<Pessanger> {
 		lastUsedPersonID++;
 		return lastUsedPersonID;
 		// end nextPersonID
+	}
+
+	@Override
+	public int compareTo(Pessanger o) {
+		return o.targetFloor - this.targetFloor;
 	}
 }
