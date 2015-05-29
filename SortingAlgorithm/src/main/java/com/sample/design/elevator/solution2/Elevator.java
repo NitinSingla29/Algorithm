@@ -2,7 +2,7 @@ package com.sample.design.elevator.solution2;
 
 import java.util.PriorityQueue;
 
-import com.sample.design.elevator.solution2.states.BeepState;
+import com.sample.design.elevator.solution2.states.BeepOnState;
 import com.sample.design.elevator.solution2.states.ElevatorState;
 import com.sample.design.elevator.solution2.states.IState;
 import com.sample.design.elevator.solution2.states.MovingUpState;
@@ -36,7 +36,7 @@ public abstract class Elevator implements StateFulObject<ElevatorState> {
 	}
 
 	public void beep() {
-		setCurrentElevatorState(new BeepState(this));
+		setCurrentElevatorState(new BeepOnState(this));
 		getCurrentElevatorState().doAcion();
 	}
 
