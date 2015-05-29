@@ -4,7 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * http://geeksquiz.com/merge-sort/
+ * http://geeksquiz.com/merge-sort/ <br>
+ * 1) Merge Sort is useful for sorting linked lists in O(nLogn) time. Other
+ * nlogn algorithms like Heap Sort, Quick Sort (average case nLogn) cannot be
+ * applied to linked lists. <br>
+ * 2) Inversion Count Problem <br>
+ * 3) Used in External Sorting
  *
  * @author nitin.singla
  *
