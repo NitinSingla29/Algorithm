@@ -2,9 +2,12 @@ package com.sample.design.elevator;
 
 import java.util.PriorityQueue;
 
-public abstract class Elevator implements StateFulObject<ElevatorState> {
-	ElevatorState currentElevatorState;
+import com.sample.design.elevator.ElevatorState.BeepOnState;
+import com.sample.design.elevator.ElevatorState.MovingUpState;
 
+public abstract class Elevator implements StateFulObject<ElevatorState> {
+	private ElevatorState currentElevatorState;
+	private boolean stopped;
 	private int currentFloor;
 
 	private int currentLoad;
@@ -67,6 +70,10 @@ public abstract class Elevator implements StateFulObject<ElevatorState> {
 		return personsMovingUp;
 	}
 
+	public boolean isStopped() {
+		return stopped;
+	}
+
 	public void move() {
 
 	}
@@ -92,6 +99,10 @@ public abstract class Elevator implements StateFulObject<ElevatorState> {
 
 	public void setMaxLoad(int maxLoad) {
 		this.maxLoad = maxLoad;
+	}
+
+	public void setStopped(boolean stopped) {
+		this.stopped = stopped;
 	}
 
 }

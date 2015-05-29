@@ -1,6 +1,5 @@
 package com.sample.design.elevator;
 
-
 public class ElevatorController {
 
 	private final Elevator elevator;
@@ -22,11 +21,15 @@ public class ElevatorController {
 		move();
 	}
 
-	public INextStateFindingStrategy<ElevatorState, Elevator> getNextStateFindingStrategy() {
-		return nextStateFindingStrategy;
-	}
-
 	public void move() {
 		nextStateFindingStrategy.getNextState(elevator).doAcion();
+	}
+
+	public void start() {
+		elevator.reset();
+	}
+
+	public void stop() {
+
 	}
 }
