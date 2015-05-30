@@ -1,16 +1,36 @@
 package com.sample.design.multilevelparking;
 
-public class ParkingSlot implements Comparable<ParkingSlot> {
+import java.util.Date;
+
+import com.sample.design.objectpool.IReusableObject;
+
+public class ParkingSlot implements Comparable<ParkingSlot>, IReusableObject {
 
 	private final int number;
-	private final boolean occupied;
+	private boolean occupied;
+	private Date occupiedAt;
 	private final ParkingSize parkingSize;
 
-	public ParkingSlot(int number, boolean occupied, ParkingSize parkingSize) {
+	public ParkingSlot(int number) {
+		super();
+		this.number = number;
+		occupied = false;
+		parkingSize = ParkingSize.LARGE;
+		occupiedAt = null;
+	}
+
+	public ParkingSlot(int number, boolean occupied, ParkingSize parkingSize, final Date occupiedAt) {
 		super();
 		this.number = number;
 		this.occupied = occupied;
 		this.parkingSize = parkingSize;
+		this.occupiedAt = occupiedAt;
+	}
+
+	@Override
+	public void close() throws Exception {
+		occupied = false;
+		occupiedAt = null;
 	}
 
 	@Override
@@ -22,6 +42,10 @@ public class ParkingSlot implements Comparable<ParkingSlot> {
 		return number;
 	}
 
+	public Date getOccupiedAt() {
+		return occupiedAt;
+	}
+
 	public ParkingSize getParkingSize() {
 		return parkingSize;
 	}
@@ -30,4 +54,13 @@ public class ParkingSlot implements Comparable<ParkingSlot> {
 		return occupied;
 	}
 
+	@Override
+	public boolean isValid() {
+		return !occupied;
+	}
+
+	@Override
+	public void release() {
+
+	}
 }
