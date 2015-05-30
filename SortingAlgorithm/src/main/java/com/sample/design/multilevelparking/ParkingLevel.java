@@ -1,54 +1,60 @@
 package com.sample.design.multilevelparking;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.PriorityQueue;
 
-public class ParkingLevel {
+import com.sample.design.objectpool.AbstractObjectPool;
+import com.sample.design.objectpool.IObjectPool;
 
-	private int number;
+public class ParkingLevel extends AbstractObjectPool<ParkingSlot> implements IObjectPool<ParkingSlot> {
 
-	private int totalAvailableSlots;
+	private final PriorityQueue<ParkingSlot> freeSlots;
 
-	private PriorityQueue<ParkingSlot> freeSlots;
+	private final int levelNumber;
+	private final int MAX_SLOTS;
 
-	private ParkingSlot[] occupiedSlots;
+	private final List<ParkingSlot> occupiedSlots;
 
 	public ParkingLevel(int number, int totalAvailableSlots) {
-		super();
-		this.number = number;
-		this.totalAvailableSlots = totalAvailableSlots;
+		levelNumber = number;
+		MAX_SLOTS = totalAvailableSlots;
 		freeSlots = new PriorityQueue<>();
-		occupiedSlots = new ParkingSlot[totalAvailableSlots];
+		occupiedSlots = new ArrayList<ParkingSlot>(totalAvailableSlots);
 	}
 
-	public PriorityQueue<ParkingSlot> getFreeSlots() {
-		return freeSlots;
+	public int getLevelNumber() {
+		return levelNumber;
 	}
 
-	public int getNumber() {
-		return number;
+	@Override
+	protected void clearFreeObject() {
+		freeSlots.clear();
 	}
 
-	public ParkingSlot[] getOccupiedSlots() {
-		return occupiedSlots;
+	@Override
+	protected void clearUsedObjects() {
+		occupiedSlots.clear();
 	}
 
-	public int getTotalAvailableSlots() {
-		return totalAvailableSlots;
+	@Override
+	protected void freeObject(ParkingSlot objectToFree) {
+		final ParkingSlot removedSlot = occupiedSlots.remove(objectToFree.getNumber());
+		if (removedSlot != null) {
+			freeSlots.add(objectToFree);
+		}
 	}
 
-	public void setFreeSlots(PriorityQueue<ParkingSlot> freeSlots) {
-		this.freeSlots = freeSlots;
+	@Override
+	protected ParkingSlot getValidFreeObject() {
+		return freeSlots.poll();
 	}
 
-	public void setNumber(int number) {
-		this.number = number;
+	@Override
+	protected void refillPool() {
+		for (int i = 0; i < MAX_SLOTS; i++) {
+			freeSlots.add(new ParkingSlot(i));
+		}
 	}
 
-	public void setOccupiedSlots(ParkingSlot[] occupiedSlots) {
-		this.occupiedSlots = occupiedSlots;
-	}
-
-	public void setTotalAvailableSlots(int totalAvailableSlots) {
-		this.totalAvailableSlots = totalAvailableSlots;
-	}
 }
